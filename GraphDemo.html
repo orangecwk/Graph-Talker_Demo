@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Graph-Talker | Research</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700;1,6..72,400&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "surface": "#f8f9ff",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#0a3b53",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary": "#2b1e29",
+                        "on-tertiary-container": "#af9baa",
+                        "outline-variant": "#c1c7cd",
+                        "secondary-container": "#cde7ee",
+                        "surface-variant": "#d3e4fe",
+                        "primary-fixed": "#c7e7ff",
+                        "on-secondary-fixed": "#051f24",
+                        "on-background": "#0b1c30",
+                        "on-primary-fixed": "#001e2e",
+                        "on-secondary-fixed-variant": "#334a50",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#3a637c",
+                        "on-tertiary-fixed-variant": "#52424f",
+                        "on-primary-fixed-variant": "#204b64",
+                        "inverse-surface": "#213145",
+                        "on-surface-variant": "#41474d",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#42333f",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#241722",
+                        "on-secondary-container": "#50686e",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#b1cbd2",
+                        "secondary": "#4a6268",
+                        "primary": "#002537",
+                        "surface-container-high": "#dce9ff",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#f3dcec",
+                        "surface-bright": "#f8f9ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary-fixed": "#cde7ee",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "on-surface": "#0b1c30",
+                        "primary-fixed-dim": "#a3cce9",
+                        "tertiary-fixed-dim": "#d6c0d0",
+                        "background": "#f8f9ff",
+                        "inverse-primary": "#a3cce9",
+                        "on-primary-container": "#7da5c1",
+                        "surface-container": "#e5eeff",
+                        "outline": "#72787d",
+                        "surface-container-highest": "#d3e4fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+            color: #0b1c30;
+        }
+
+        .font-serif {
+            font-family: 'Newsreader', serif;
+        }
+
+        .abstract-accent {
+            border-left: 4px solid #42333f;
+        }
+
+        .paper-shadow {
+            box-shadow: 0 4px 40px rgba(11, 28, 48, 0.04);
+        }
+
+        /* 音频条：跟随单元格宽度自适应，保证完整显示 */
+        audio {
+            width: 100%;
+            height: 36px;
+        }
+
+        /* 大标题：单行显示，字号随视口宽度流式缩放 */
+        .paper-title {
+            white-space: nowrap;
+            font-size: clamp(0.85rem, 2.3vw, 2.25rem);
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface">
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md">
+        <div class="flex justify-center items-center max-w-7xl mx-auto px-8 h-16">
+            <!-- Desktop nav -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a class="text-sky-900 dark:text-sky-100 font-bold border-b-2 border-sky-900 dark:border-sky-100 pb-1 font-sans text-sm tracking-wide"
+                    href="#abstract">Abstract</a>
+                <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-sky-800 dark:hover:text-sky-200 transition-colors duration-300 font-sans text-sm tracking-wide"
+                    href="#methodology">Methodology</a>
+                <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-sky-800 dark:hover:text-sky-200 transition-colors duration-300 font-sans text-sm tracking-wide"
+                    href="#demo">Demo</a>
+                <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-sky-800 dark:hover:text-sky-200 transition-colors duration-300 font-sans text-sm tracking-wide"
+                    href="#bibtex">BibTeX</a>
+            </div>
+            <!-- Mobile nav -->
+            <div class="flex md:hidden items-center space-x-5">
+                <a class="text-sky-900 font-bold border-b-2 border-sky-900 pb-1 text-xs" href="#abstract">Abstract</a>
+                <a class="text-slate-500 font-medium text-xs" href="#methodology">Method</a>
+                <a class="text-slate-500 font-medium text-xs" href="#demo">Demo</a>
+                <a class="text-slate-500 font-medium text-xs" href="#bibtex">BibTeX</a>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24">
+        <!-- Hero Section -->
+        <header class="max-w-7xl mx-auto px-8 text-center mb-24">
+            <h1 class="paper-title font-serif text-primary leading-snug mb-8 mx-auto">
+                Retrieval-Augmented Dialogue Knowledge Aggregation for Expressive Conversational Speech Synthesis
+            </h1>
+            <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-4">
+                <div class="text-center">
+                    <span class="block font-medium text-on-surface">Wenkai Cheng</span>
+                    <span class="block text-sm text-outline">Inner Mongolia University</span>
+                </div>
+                <div class="text-center">
+                    <span class="block font-medium text-on-surface">Zhenqi Jia</span>
+                    <span class="block text-sm text-outline">Inner Mongolia University</span>
+                </div>
+                <div class="text-center">
+                    <span class="block font-medium text-on-surface">Rui Liu<sup>†</sup></span>
+                    <span class="block text-sm text-outline">Inner Mongolia University</span>
+                </div>
+            </div>
+            <p class="text-sm text-outline mb-12"><sup>†</sup>Corresponding author.</p>
+        </header>
+        <!-- Abstract Section -->
+        <section class="bg-surface-container-low py-20 mb-24" id="abstract">
+            <div class="max-w-4xl mx-auto px-8">
+                <div class="abstract-accent bg-surface-container-lowest p-10 paper-shadow">
+                    <h2 class="font-serif text-3xl text-primary mb-6">Abstract</h2>
+                    <p class="font-body text-lg leading-relaxed text-on-surface-variant">
+                        Conversational Speech Synthesis (CSS) aims to generate speech with natural prosody and
+                        contextually coherent sentiment in multi-turn dialogues, where modeling sentiment dynamics is
+                        essential for high-quality generation. Existing approaches predominantly rely on continuous
+                        representations of dialogue history, which are inadequate for capturing structured semantic
+                        dependencies and fine-grained sentiment evolution, often resulting in structural misalignment
+                        between retrieved and current dialogues as well as limited interpretability. To address these
+                        challenges, we propose Graph-Talker, a structure-aware retrieval-augmented framework for
+                        sentiment-aware CSS. Specifically, we construct hierarchical multi-view dialogue graphs that
+                        organize conversations into semantic and sentiment views with global–local structures, and
+                        introduce dialogue-level semantic and sentiment captions as global constraint nodes to enhance
+                        structured representations. Building upon this, we design a hybrid retrieval strategy that
+                        jointly exploits graph structural signals and embedding similarity, along with a hierarchical
+                        fusion mechanism that incorporates retrieved knowledge as structural constraints, enabling
+                        coordinated modeling of semantic and sentiment information during speech generation.
+                        Experimental results demonstrate that Graph-Talker consistently improves sentiment consistency
+                        and speech naturalness over strong baselines, while providing an interpretable and extensible
+                        framework for structured sentiment modeling in CSS. Code and demos are available at: <a
+                            class="text-sky-700 underline hover:text-sky-900 transition-colors"
+                            href="https://github.com/orangecwk/Graph" target="_blank"
+                            rel="noopener">https://github.com/orangecwk/Graph</a>.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Methodology Section -->
+        <section class="max-w-6xl mx-auto px-8 mb-32" id="methodology">
+            <h2
+                class="font-serif text-4xl text-primary mb-10 text-center underline decoration-primary-container decoration-2 underline-offset-8">
+                Model Architecture</h2>
+            <div class="bg-white p-8 rounded-sm paper-shadow border border-outline-variant/10">
+                <img alt="Technical diagram of the model architecture" class="w-full h-auto mb-4"
+                    src="assets/framework.png" />
+                <p class="text-xs italic text-center text-outline">Figure 1: Overview of the Graph-Talker framework,
+                    comprising multi-view dialogue graph construction, hybrid graph-embedding retrieval, hierarchical
+                    fusion, and retrieval-augmented acoustic generation.</p>
+            </div>
+        </section>
+        <!-- Experimental Demo Section -->
+        <section class="max-w-[1800px] mx-auto px-6 mb-32" id="demo">
+            <h2 class="font-serif text-4xl text-primary mb-4 text-center">Experimental Results &amp; Demo</h2>
+            <p class="text-center text-outline mb-16 max-w-2xl mx-auto">Exploring the impact of our approach on
+                expressive speech synthesis through comparative and ablation studies.</p>
+
+            <!-- Comparative Evaluation -->
+            <div class="mb-24">
+                <div class="flex items-center justify-center mb-8">
+                    <h3 class="font-serif text-2xl text-primary font-bold">Comparative</h3>
+                </div>
+                <div class="bg-white rounded-sm paper-shadow border border-outline-variant/20">
+                    <!-- 宽度自适应容器：w-full + table-fixed + 百分比列宽，完整显示无滚动条 -->
+                    <table class="w-full table-fixed font-body">
+                        <colgroup>
+                            <col style="width: 6.5%;" />
+                            <col style="width: 11.6875%;" span="8" />
+                        </colgroup>
+                        <thead>
+                            <tr class="border-b border-outline-variant text-xs text-primary">
+                                <th class="py-4 px-1 font-bold text-center">Dataset</th>
+                                <th class="py-4 px-1 font-bold text-center">Ground Truth</th>
+                                <th class="py-4 px-1 font-bold text-center">DailyTalk</th>
+                                <th class="py-4 px-1 font-bold text-center">M<sup>2</sup>-CTTS</th>
+                                <th class="py-4 px-1 font-bold text-center">Homogeneous<br />Graph-based CSS</th>
+                                <th class="py-4 px-1 font-bold text-center">CONCSS</th>
+                                <th class="py-4 px-1 font-bold text-center">ECSS</th>
+                                <th class="py-4 px-1 font-bold text-center">RADKA-CSS</th>
+                                <th class="py-4 px-1 font-bold text-center text-sky-700">Graph-Talker</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm text-on-surface-variant align-middle">
+                            <!-- Row: DailyTalk dataset -->
+                            <tr class="border-b border-outline-variant/30">
+                                <td class="py-4 px-1 font-medium text-center align-top">DailyTalk</td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/dground_truth.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/ddailytalk.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/dm2ctts.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/dhomogeneous.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/dconcss.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/decss.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/dradka.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center bg-sky-50/60">
+                                    <audio controls src="audio/dgraphtalker.wav"></audio>
+                                </td>
+                            </tr>
+                            <!-- Row: NCSSD dataset -->
+                            <tr>
+                                <td class="py-4 px-1 font-medium text-center align-top">NCSSD</td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/nground_truth.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/ndailytalk.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/nm2ctts.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/nhomogeneous.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/nconcss.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/necss.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/nradka.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center bg-sky-50/60">
+                                    <audio controls src="audio/ngraphtalker.wav"></audio>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Ablation Study -->
+            <div>
+                <div class="flex items-center justify-center mb-8">
+                    <h3 class="font-serif text-2xl text-primary font-bold">Ablation</h3>
+                </div>
+                <div class="bg-white rounded-sm paper-shadow border border-outline-variant/20">
+                    <table class="w-full table-fixed font-body">
+                        <colgroup>
+                            <col style="width: 8%;" />
+                            <col style="width: 15.33%;" span="6" />
+                        </colgroup>
+                        <thead>
+                            <tr class="border-b border-outline-variant text-xs text-primary">
+                                <th class="py-4 px-1 font-bold text-center">Dataset</th>
+                                <th class="py-4 px-1 font-bold text-center">Ablation 1</th>
+                                <th class="py-4 px-1 font-bold text-center">Ablation 2</th>
+                                <th class="py-4 px-1 font-bold text-center">Ablation 3</th>
+                                <th class="py-4 px-1 font-bold text-center">Ablation 4</th>
+                                <th class="py-4 px-1 font-bold text-center">Ablation 5</th>
+                                <th class="py-4 px-1 font-bold text-center">Ablation 6</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm text-on-surface-variant">
+                            <!-- Row: DailyTalk dataset -->
+                            <tr class="border-b border-outline-variant/30">
+                                <td class="py-4 px-1 font-medium text-center align-top">DailyTalk</td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/dablation1.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/dablation2.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/dablation3.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/dablation4.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/dablation5.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/dablation6.wav"></audio>
+                                </td>
+                            </tr>
+                            <!-- Row: NCSSD dataset -->
+                            <tr>
+                                <td class="py-4 px-1 font-medium text-center align-top">NCSSD</td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/nablation1.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/nablation2.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/nablation3.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/nablation4.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/nablation5.wav"></audio>
+                                </td>
+                                <td class="py-4 px-1.5 text-center">
+                                    <audio controls src="audio/nablation6.wav"></audio>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <!-- BibTeX Section -->
+        <section class="max-w-4xl mx-auto px-8 mb-32" id="bibtex">
+            <h2 class="font-serif text-3xl text-primary mb-6">BibTeX</h2>
+            <div class="relative group">
+                <button id="copy-bibtex" title="Copy BibTeX"
+                    class="absolute top-4 right-4 text-outline hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined" data-icon="content_copy">content_copy</span>
+                </button>
+                <pre id="bibtex-code"
+                    class="bg-slate-900 text-slate-300 p-8 rounded-sm font-mono text-sm leading-relaxed overflow-x-auto">@inproceedings{liu2024retrieval,
+  title={Retrieval-Augmented Dialogue Knowledge Aggregation for Expressive Conversational Speech Synthesis},
+  author={Liu, Rui and Cheng, Wenkai and Jia, Zhenqi},
+  booktitle={xxxxxxx},
+  year={2027},
+  publisher={IEEE}
+}</pre>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-slate-100 dark:bg-slate-900 w-full py-12 mt-24">
+        <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-sans text-sm text-slate-500 dark:text-slate-400">© 2024 Institutional Research Laboratory.
+                All rights reserved.</p>
+            <div class="flex flex-wrap justify-center gap-x-8 gap-y-2">
+                <a class="text-slate-500 dark:text-slate-400 font-sans text-sm hover:text-sky-700 dark:hover:text-sky-300"
+                    href="#">Contact</a>
+                <a class="text-slate-500 dark:text-slate-400 font-sans text-sm hover:text-sky-700 dark:hover:text-sky-300"
+                    href="#">Terms of Service</a>
+                <a class="text-slate-500 dark:text-slate-400 font-sans text-sm hover:text-sky-700 dark:hover:text-sky-300"
+                    href="#">Privacy Policy</a>
+                <a class="text-sky-900 dark:text-sky-100 underline font-sans text-sm"
+                    href="https://github.com/orangecwk/Graph" target="_blank" rel="noopener">Code Repository</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // BibTeX 一键复制
+        document.getElementById('copy-bibtex').addEventListener('click', function () {
+            const text = document.getElementById('bibtex-code').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const icon = this.querySelector('.material-symbols-outlined');
+                icon.textContent = 'check';
+                setTimeout(() => { icon.textContent = 'content_copy'; }, 1500);
+            });
+        });
+    </script>
+</body>
+
+</html>
